@@ -1,0 +1,189 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no, viewport-fit=cover" />
+  <meta name="format-detection" content="telephone=no, email=no" />
+  <meta name="description" content="PACELAB 领跑局 × ENGINE BIRD 引擎鸟：跨平台马拉松备赛匹配、跑团公平排位、跑超城市/省际PK与 Proof-of-Run 私域共赢方案（交互式演示）" />
+  <meta property="og:type" content="website" />
+  <meta property="og:title" content="领跑局 PACELAB × 引擎鸟 · 合作提案交互 Demo" />
+  <meta property="og:description" content="可实时体验：多平台数据同步、广马/深马配速列车、跑团公平排位、跑超粤苏PK、骑行/游泳等效换算及引擎鸟 ROI 测算。" />
+  <link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'%3E%3Crect width='32' height='32' rx='8' fill='%230F1419'/%3E%3Ccircle cx='16' cy='16' r='7' fill='%23FC4C02'/%3E%3C/svg%3E" />
+  <title>领跑局 PACELAB × 引擎鸟 · 合作提案交互 Demo</title>
+  <link rel="stylesheet" href="./styles.css" />
+</head>
+<body class="mode-studio">
+  <!-- Top Studio Header (Desktop & Mobile Pitch Toggle) -->
+  <header class="studio-topbar" id="studioTopbar">
+    <div class="topbar-left">
+      <div class="brand-mark">
+        <span class="brand-dot"></span>
+        <span class="brand-name">PACELAB</span>
+        <span class="brand-cn">领跑局</span>
+      </div>
+      <span class="brand-x">×</span>
+      <div class="partner-badge">
+        <span class="partner-en">ENGINE BIRD</span>
+        <span class="partner-cn">引擎鸟合作提案</span>
+      </div>
+    </div>
+
+    <nav class="chapter-nav" id="chapterNav" aria-label="Pitch 章节导航">
+      <button class="chapter-pill active" data-chapter="0">
+        <span class="pill-num">01</span>
+        <span class="pill-label">破局与同步</span>
+      </button>
+      <button class="chapter-pill" data-chapter="1">
+        <span class="pill-num">02</span>
+        <span class="pill-label">以赛带练</span>
+      </button>
+      <button class="chapter-pill" data-chapter="2">
+        <span class="pill-num">03</span>
+        <span class="pill-label">跑团排位</span>
+      </button>
+      <button class="chapter-pill" data-chapter="3">
+        <span class="pill-num">04</span>
+        <span class="pill-label">跑超PK</span>
+      </button>
+      <button class="chapter-pill" data-chapter="4">
+        <span class="pill-num">05</span>
+        <span class="pill-label">引擎鸟ROI</span>
+      </button>
+    </nav>
+
+    <div class="topbar-right">
+      <button class="studio-btn subtle" id="togglePhoneOnlyBtn" title="切换全屏演示手机原型">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><rect x="6" y="2" width="12" height="20" rx="2.5"/><path d="M10 18h4"/></svg>
+        <span id="togglePhoneOnlyText">专注原型</span>
+      </button>
+      <div class="kbd-hint" title="使用键盘左右方向键切换章节">
+        <kbd>←</kbd><kbd>→</kbd>
+      </div>
+    </div>
+  </header>
+
+  <!-- Mobile floating mode switcher (visible only on <1024px) -->
+  <div class="mobile-mode-bar" id="mobileModeBar">
+    <button class="mobile-mode-btn active" data-mobile-view="phone">体验小程序</button>
+    <button class="mobile-mode-btn" data-mobile-view="pitch">路演与ROI测算</button>
+  </div>
+
+  <!-- Main Workspace -->
+  <main class="studio-workspace">
+    <!-- Left Pane: Interactive Pitch Storyboard -->
+    <section class="pitch-pane" id="pitchPane" aria-label="商业路演内容">
+      <div class="pitch-scroll" id="pitchScroll">
+        <div id="pitchContent"></div>
+
+        <footer class="pitch-footer-nav">
+          <button class="footer-step-btn" id="prevChapterBtn">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M15 18l-6-6 6-6"/></svg>
+            <span>上一章</span>
+          </button>
+          <div class="chapter-dots" id="chapterDots"></div>
+          <button class="footer-step-btn primary" id="nextChapterBtn">
+            <span>下一章</span>
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M9 18l6-6-6-6"/></svg>
+          </button>
+        </footer>
+      </div>
+    </section>
+
+    <!-- Right Pane: Live iPhone / WeChat Mini Program Simulator -->
+    <section class="device-pane" id="devicePane" aria-label="微信小程序高保真交互原型">
+      <div class="device-stage">
+        <div class="device-caption">
+          <span class="live-indicator"><span class="live-dot"></span> 可实时点击交互</span>
+          <span class="caption-sep">·</span>
+          <span id="deviceSyncHint">当前演示：广马备赛与跨平台同步</span>
+        </div>
+
+        <div class="iphone-shell">
+          <div class="iphone-notch">
+            <div class="notch-camera"></div>
+          </div>
+
+          <!-- Phone Screen -->
+          <div class="phone-screen" id="phoneScreen">
+            <!-- Status Bar & WeChat Mini Program Header -->
+            <div class="wx-header">
+              <div class="ios-statusbar">
+                <span class="status-time">06:42</span>
+                <div class="status-icons">
+                  <svg viewBox="0 0 18 12" fill="currentColor" width="15" height="10"><rect x="0" y="7" width="3" height="5" rx="1"/><rect x="4.5" y="5" width="3" height="7" rx="1"/><rect x="9" y="2.5" width="3" height="9.5" rx="1"/><rect x="13.5" y="0" width="3" height="12" rx="1"/></svg>
+                  <span class="status-5g">5G</span>
+                  <div class="battery"><div class="battery-fill"></div></div>
+                </div>
+              </div>
+              <div class="wx-navbar">
+                <div class="wx-nav-left">
+                  <span class="wx-title" id="wxNavTitle">领跑局 PACELAB</span>
+                  <span class="wx-city-pill" id="wxCityPill">广州</span>
+                </div>
+                <div class="wx-capsule" aria-hidden="true">
+                  <span class="capsule-dots">•••</span>
+                  <span class="capsule-div"></span>
+                  <span class="capsule-eye"></span>
+                </div>
+              </div>
+            </div>
+
+            <!-- Live User Proof-of-Run Mini Strip -->
+            <div class="por-strip" id="porStrip">
+              <div class="por-strip-left">
+                <span class="por-label">本月认证跑量</span>
+                <strong class="por-value" id="porMileageText">26.4</strong>
+                <span class="por-unit">/ 30 km 解锁引擎鸟内购</span>
+              </div>
+              <button class="por-sync-btn" id="openSyncModalBtn">
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 5v14"/><path d="M5 12h14"/></svg>
+                <span>同步运动</span>
+              </button>
+            </div>
+            <div class="por-progress-track">
+              <div class="por-progress-fill" id="porProgressFill" style="width: 88%;"></div>
+            </div>
+
+            <!-- Scrollable Screen Content -->
+            <div class="phone-body" id="phoneBody"></div>
+
+            <!-- Toast inside phone -->
+            <div class="phone-toast" id="phoneToast" role="status" aria-live="polite"></div>
+
+            <!-- Bottom WeChat Tab Bar -->
+            <nav class="phone-tabbar" id="phoneTabbar" aria-label="小程序底部导航">
+              <button class="tab-item active" data-tab="match">
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="9"/><path d="M12 7v5l3 2"/></svg>
+                <span>备赛匹配</span>
+              </button>
+              <button class="tab-item" data-tab="clubs">
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M6 9H4.5a2.5 2.5 0 0 1 0-5H6"/><path d="M18 9h1.5a2.5 2.5 0 0 0 0-5H18"/><path d="M4 22h16"/><path d="M10 14.66V17c0 .55-.47.98-.97 1.21C7.85 18.75 7 20.24 7 22"/><path d="M14 14.66V17c0 .55.47.98.97 1.21C16.15 18.75 17 20.24 17 22"/><path d="M18 2H6v7a6 6 0 0 0 12 0V2Z"/></svg>
+                <span>跑团排位</span>
+              </button>
+              <button class="tab-item" data-tab="pk">
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M13 2L3 14h9l-1 8 10-12h-9l1-8z"/></svg>
+                <span>跑超PK</span>
+              </button>
+              <button class="tab-item" data-tab="perks">
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M20 12v10H4V12"/><path d="M2 7h20v5H2z"/><path d="M12 22V7"/><path d="M12 7H7.5a2.5 2.5 0 0 1 0-5C11 2 12 7 12 7z"/><path d="M12 7h4.5a2.5 2.5 0 0 0 0-5C13 2 12 7 12 7z"/></svg>
+                <span>引擎鸟</span>
+                <span class="tab-badge" id="perksTabBadge" style="display:none;">已解锁</span>
+              </button>
+            </nav>
+
+            <!-- Phone Modal Overlay (Sync, Club Detail, Poster, Coupon) -->
+            <div class="phone-sheet-backdrop" id="phoneSheetBackdrop">
+              <div class="phone-sheet" id="phoneSheet"></div>
+            </div>
+
+            <div class="ios-home-indicator"></div>
+          </div>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <script src="./data.js"></script>
+  <script src="./app.js"></script>
+</body>
+</html>
