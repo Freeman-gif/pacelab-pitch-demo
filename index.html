@@ -19,12 +19,12 @@
       <div class="brand-mark">
         <span class="brand-dot"></span>
         <span class="brand-name">PACELAB</span>
-        <span class="brand-cn">领跑局</span>
+        <span class="brand-cn" id="brandCnText">领跑局</span>
       </div>
       <span class="brand-x">×</span>
       <div class="partner-badge">
         <span class="partner-en">ENGINE BIRD</span>
-        <span class="partner-cn">引擎鸟合作提案</span>
+        <span class="partner-cn" id="partnerCnText">引擎鸟合作提案</span>
       </div>
     </div>
 
@@ -52,6 +52,10 @@
     </nav>
 
     <div class="topbar-right">
+      <div class="lang-switch" id="langSwitchDesktop" role="group" aria-label="Language switcher">
+        <button class="lang-btn active" data-lang="zh">中文</button>
+        <button class="lang-btn" data-lang="en">EN</button>
+      </div>
       <button class="studio-btn subtle" id="togglePhoneOnlyBtn" title="切换全屏演示手机原型">
         <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><rect x="6" y="2" width="12" height="20" rx="2.5"/><path d="M10 18h4"/></svg>
         <span id="togglePhoneOnlyText">专注原型</span>
@@ -64,8 +68,9 @@
 
   <!-- Mobile floating mode switcher (visible only on <1024px) -->
   <div class="mobile-mode-bar" id="mobileModeBar">
-    <button class="mobile-mode-btn active" data-mobile-view="phone">体验小程序</button>
-    <button class="mobile-mode-btn" data-mobile-view="pitch">路演与ROI测算</button>
+    <button class="mobile-mode-btn active" data-mobile-view="phone" id="mobileBtnPhone">体验小程序</button>
+    <button class="mobile-mode-btn" data-mobile-view="pitch" id="mobileBtnPitch">路演与ROI测算</button>
+    <button class="mobile-lang-btn" id="mobileLangBtn" title="Switch Language">EN</button>
   </div>
 
   <!-- Main Workspace -->
@@ -93,7 +98,7 @@
     <section class="device-pane" id="devicePane" aria-label="微信小程序高保真交互原型">
       <div class="device-stage">
         <div class="device-caption">
-          <span class="live-indicator"><span class="live-dot"></span> 可实时点击交互</span>
+          <span class="live-indicator"><span class="live-dot"></span> <span id="liveBadgeText">可实时点击交互</span></span>
           <span class="caption-sep">·</span>
           <span id="deviceSyncHint">当前演示：广马备赛与跨平台同步</span>
         </div>
@@ -131,13 +136,13 @@
             <!-- Live User Proof-of-Run Mini Strip -->
             <div class="por-strip" id="porStrip">
               <div class="por-strip-left">
-                <span class="por-label">本月认证跑量</span>
+                <span class="por-label" id="porLabelText">本月认证跑量</span>
                 <strong class="por-value" id="porMileageText">26.4</strong>
-                <span class="por-unit">/ 30 km 解锁引擎鸟内购</span>
+                <span class="por-unit" id="porUnitText">/ 30 km 解锁引擎鸟内购</span>
               </div>
               <button class="por-sync-btn" id="openSyncModalBtn">
                 <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 5v14"/><path d="M5 12h14"/></svg>
-                <span>同步运动</span>
+                <span id="porSyncBtnText">同步运动</span>
               </button>
             </div>
             <div class="por-progress-track">
@@ -184,6 +189,7 @@
   </main>
 
   <script src="./data.js"></script>
+  <script src="./data-en.js"></script>
   <script src="./app.js"></script>
 </body>
 </html>
